@@ -1,9 +1,9 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>@ViewData["Title"] · AcxiomCRM</title>
 <link rel="stylesheet" href="/vendor/bootstrap.min.css"/><link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/></head>
-<body><div class="app-shell"><aside class="sidebar"><a class="brand" href="/">a<span>AcxiomCRM</span></a><div class="nav-caption">SALES WORKSPACE</div>
+<body><a class="skip-link" href="#main">Skip to content</a><div class="app-shell"><aside class="sidebar"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">a</span><span>AcxiomCRM</span></a><div class="nav-caption">SALES WORKSPACE</div>
 @if(User.Identity?.IsAuthenticated==true){
-<nav aria-label="Main navigation"><a href="/">Overview</a>@foreach(var kind in Modules.All){<a href="/crm/@kind">@(kind=="followups"?"Follow-ups":System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(kind))</a>}<a href="/Reports">Reports</a>
-@if(User.IsInRole(Roles.Admin)){<div class="nav-caption">ADMINISTRATION</div><a href="/Admin">Users & roles</a><a href="/Admin/Audit">Audit log</a>}
+<nav aria-label="Main navigation"><a href="/"><span class="nav-icon" aria-hidden="true">◫</span>Overview</a>@foreach(var kind in Modules.All){<a href="/crm/@kind"><span class="nav-icon" aria-hidden="true">@((kind=="customers"?"○":kind=="leads"?"↗":kind=="opportunities"?"◇":kind=="followups"?"◷":"≋"))</span>@(kind=="followups"?"Follow-ups":System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(kind))</a>}<a href="/Reports"><span class="nav-icon" aria-hidden="true">▤</span>Reports</a>
+@if(User.IsInRole(Roles.Admin)){<div class="nav-caption">ADMINISTRATION</div><a href="/Admin"><span class="nav-icon" aria-hidden="true">♙</span>Users & roles</a><a href="/Admin/Audit"><span class="nav-icon" aria-hidden="true">◷</span>Audit log</a>}
 </nav><div class="sidebar-bottom">Your scope<br/><strong>@(User.IsInRole(Roles.Admin)?"Administrator":User.IsInRole(Roles.Manager)?"Sales manager":"Sales executive")</strong></div>
 }else{<nav><a href="/Account/Login">Sign in</a><a href="/Account/Register">Register</a></nav>}
 </aside><div class="main-shell"><header class="topbar"><span>Customer relationships, clearly.</span><div>@User.Identity?.Name
